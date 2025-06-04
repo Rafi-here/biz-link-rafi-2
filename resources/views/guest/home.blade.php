@@ -1,4 +1,4 @@
-<x-layout.guest :title="json_decode(\Storage::get('website.json'), true)['title']">
+<x-layout.guest :title="optional(json_decode(\Storage::get('website.json'), true))['type'] ?? 'title'">
     <div class=" w-full px-4 sm:px-8 py-8 sm:py-12 space-y-4 sm:space-y-8">
         {{-- Banner --}}
         @include('components.section.banner')

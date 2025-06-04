@@ -7,9 +7,9 @@
                 <div class=" col-span-2 md:col-span-1 space-y-2">
                     <a href="{{route('home')}}" class="">
                         <div class=" w-full h-10 sm:h-12 text-3xl sm:text-4xl font-bold text-white flex items-start overflow-hidden">
-                            @if (json_decode(\Storage::get('website.json'), true)['type'] === 'teks')
+                            @if (optional(json_decode(\Storage::get('website.json'), true))['type'] ?? null === 'teks')
                                 <p class=" text-nowrap">{{json_decode(\Storage::get('website.json'), true)['title']}}</p>
-                            @elseif (json_decode(\Storage::get('website.json'), true)['type'] === 'image')
+                            @elseif (optional(json_decode(\Storage::get('website.json'), true))['type'] ?? null === 'image')
                                 <img src="{{asset('storage/images/'. json_decode(\Storage::get('website.json'), true)['image'])}}" class=" object-contain max-h-full max-w-full" alt="">
                             @endif
                         </div>

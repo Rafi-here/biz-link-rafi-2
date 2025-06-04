@@ -10,7 +10,7 @@
 
     $sentence = Str::limit(trim($cleanText), 155);
 @endphp
-<x-layout.guest :title="$data->judul. ' - '.json_decode(\Storage::get('website.json'), true)['title']" :desc="$sentence" :tags="$data->articles->articletag" :footer="false">
+<x-layout.guest :title="$data->judul. ' - '.(optional(json_decode(\Storage::get('website.json'), true))['title'] ?? 'title')" :desc="$sentence" :tags="$data->articles->articletag" :footer="false">
     <div class=" background w-full">
         {{-- Header --}}
         @include('components.guest.header.'.$template->head_type)

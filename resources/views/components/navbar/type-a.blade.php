@@ -4,9 +4,9 @@
         <div class=" w-full max-w-[1080px] mx-auto flex items-center gap-10 justify-between">
             <a href="{{route('home')}}">
                 <div class=" min-w-32 h-10 sm:h-12 flex items-center overflow-hidden">
-                    @if (json_decode(\Storage::get('website.json'), true)['type'] === 'teks')
+                    @if (optional(json_decode(\Storage::get('website.json'), true))['type'] ?? null === 'teks')
                         <p class=" text-3xl sm:text-4xl font-bold">{{json_decode(\Storage::get('website.json'), true)['title']}}</p>
-                    @elseif (json_decode(\Storage::get('website.json'), true)['type'] === 'image')
+                    @elseif (optional(json_decode(\Storage::get('website.json'), true))['type'] ?? null === 'image')
                         <img src="{{asset('storage/images/'. json_decode(\Storage::get('website.json'), true)['image'])}}" class=" object-contain max-h-full max-w-full" alt="">
                     @endif
                 </div>

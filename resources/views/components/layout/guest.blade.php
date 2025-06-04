@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <link rel="icon" href="{{ asset('/storage/images/'.json_decode(\Storage::get('website.json'), true)['icon']) }}" type="image/x-icon">
+        <link rel="icon" href="{{ optional(json_decode(\Storage::get('website.json'), true))['icon'] ? asset('/storage/images/' . json_decode(\Storage::get('website.json'), true)['icon']) : null }}" type="image/x-icon">
 
         <title>{{ $title ?? '' }}</title>
 
@@ -17,7 +17,7 @@
         <meta property="og:title" content="{{$title ?? ''}}">
         <meta property="og:description" content="{{ $desc ?? '' }}">
         <meta property="og:url" content="{{ url()->current() }}">
-        <meta property="og:site_name" content="{{json_decode(\Storage::get('website.json'), true)['title']}}">
+        <meta property="og:site_name" content="{{ optional(json_decode(\Storage::get('website.json'), true))['title'] ?? null }}">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
