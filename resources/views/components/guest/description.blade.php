@@ -23,7 +23,7 @@
                 <p>{{$data->date}}</p>
             </div>
         </div>
-        <div class=" article space-y-4 sm:space-y-6">
+        <div class=" article ">
             {!! nl2br($data->article == '' ? '' : $data->article) !!}
             <div class=" flex flex-wrap gap-1">
                 @foreach ($data->articles->articletag as $item)
