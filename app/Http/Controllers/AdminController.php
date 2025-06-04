@@ -158,7 +158,7 @@ class AdminController extends Controller
     public function register() {
         $data = json_decode(Storage::get('website.json'), true);
 
-        if ($data['code']) {
+        if ($data && $data['code']) {
             return redirect()->route('login');
         }
         return view('admin.register');
