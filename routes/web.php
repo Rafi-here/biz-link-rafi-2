@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/robots.txt', function () {
+    return response()->view('admin.robots')->header('Content-Type', 'text/plain');
+});
 
 Route::middleware(['checkcode'])->group(function () {
     Route::get('/', [PageController::class, 'home'])->name('home');

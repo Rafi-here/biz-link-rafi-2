@@ -7,4 +7,4 @@ Allow: /
 User-agent: *
 Disallow: /admin/
 
-Sitemap: https://bizlink.sites.id/sitemap.xml
+Sitemap: {{ url('/sitemap.xml') }}
