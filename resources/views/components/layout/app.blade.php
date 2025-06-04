@@ -14,7 +14,8 @@
         <!-- CDN -->
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+        <link href="{{ asset('build/assets/app.css') }}" rel="stylesheet" />
     </head>
     <body>
         <div class=" flex w-full h-screen justify-center items-center p-4 sm:p-8 bg-main">
@@ -23,6 +24,7 @@
             </div>
         </div>
     </body>
+    <script src="{{ asset('build/assets/app.js') }}"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </html>
