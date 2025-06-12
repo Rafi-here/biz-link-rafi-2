@@ -154,8 +154,6 @@ class PageController extends Controller
             // Akses datanya jika perlu
             $data = $api->data;
 
-            $data->no_tlp = +6285624203799;
-
             $data->date = Carbon::parse($data->created_at)->locale('id')->translatedFormat('d F Y');
 
             $data->articleshowgallery = collect($data->articleshowgallery);
