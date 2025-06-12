@@ -29,6 +29,11 @@
         {{-- Contact --}}
         @include('components.guest.contact.one')
     </div>
+    @if (session('logged_in_code'))    
+        <a href="https://bizlink.sites.id/admin/{{$data->articles->article_type === 'spintax' ? 'article-generated' : 'article-unique'}}/{{$data->id}}" target="__blank">
+            <button class=" fixed top-24 right-8 bg-background text-black font-semibold hover:bg-second hover:text-background duration-300 px-4 py-2 rounded-full">Edit</button>
+        </a>
+    @endif
     <style>
         .background {
             @if ($template->bg_type === 'normal')
