@@ -26,7 +26,7 @@
             <div class=" hidden md:flex flex-row gap-6 items-center text-neutral-500">
                 <x-navbar.button.type-a title="Beranda" :route="route('home')" :active="['home']" :mobile="false" />
                 <x-navbar.button.type-a title="Artikel" :route="route('article')" :active="['article', 'article.page', 'author', 'author.page', 'category', 'category.page', 'tag', 'tag.page', 'detail']" :mobile="false" />
-                <x-navbar.button.type-a title="Kontak" :route="null" :active="null" :mobile="false" />
+                <x-navbar.button.type-a title="Kontak" route="{{ request()->routeIs('detail') ? route('home') : '' }}#kontak" :active="null" :mobile="false" />
             </div>
             <div class=" h-8 sm:h-10 block sm:hidden">
                 <button @click="open = !open" class="w-8 h-8 p-2 bg-second rounded-md text-white flex flex-col justify-between items-center relative">
