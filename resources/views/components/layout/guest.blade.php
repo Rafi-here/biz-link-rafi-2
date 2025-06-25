@@ -1,4 +1,4 @@
-@props(['title' => null, 'desc' => null, 'tags' => null, 'footer' => true])
+@props(['title' => null, 'desc' => null, 'tags' => null, 'footer' => true, 'category' => null])
 <!DOCTYPE html>
 <html class=" scroll-smooth" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>

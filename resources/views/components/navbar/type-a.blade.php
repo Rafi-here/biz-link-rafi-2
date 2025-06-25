@@ -25,7 +25,17 @@
             </div>
             <div class=" hidden md:flex flex-row gap-6 items-center text-neutral-500">
                 <x-navbar.button.type-a title="Beranda" :route="route('home')" :active="['home']" :mobile="false" />
-                <x-navbar.button.type-a title="Artikel" :route="route('article')" :active="['article', 'article.page', 'author', 'author.page', 'category', 'category.page', 'tag', 'tag.page', 'detail']" :mobile="false" />
+                <div x-data="{ article : false }" class=" relative">
+                    <button @click="article = !article" class="{{ request()->routeIs('article', 'article.page', 'author', 'author.page', 'category', 'category.page', 'tag', 'tag.page', 'detail') ? 'text-white bg-second' : 'text-black hover:text-white hover:bg-second'}} px-5 py-1.5 rounded-full font-semibold text-base duration-300" aria-label="Artikel">Artikel</button>
+                    <div x-show="article" class=" absolute top-full left-0 bg-white py-2 rounded-md shadow-md shadow-black/20 text-sm">
+                        <div class=" max-h-36 overflow-auto flex flex-col gap-1">
+                            <a href="{{route('article')}}" class=" w-full  text-nowrap px-4 hover:bg-neutral-100 duration-300 py-1">Artikel Terbaru</a>
+                            @foreach ($category as $item)
+                                <a href="{{route('category', ['category' => $item->slug])}}" class=" w-full  text-nowrap px-4 hover:bg-neutral-100 duration-300 py-1">{{$item->category}}</a>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
                 <x-navbar.button.type-a title="Kontak" route="{{ request()->routeIs('detail') ? route('home') : '' }}#kontak" :active="null" :mobile="false" />
             </div>
             <div class=" h-8 sm:h-10 block sm:hidden">
@@ -41,7 +51,15 @@
     </div>
     <div :class="{' top-[70px] sm:top-20': open, '-translate-y-full top-0': !open}" class=" fixed flex md:hidden flex-col bg-white w-full left-0 justify-center gap-4 font-semibold text-neutral-600 pt-2 px-4 pb-4 duration-300 z-30">
         <x-navbar.button.type-a title="Beranda" :route="route('home')" :active="['home']" :mobile="true" />
-        <x-navbar.button.type-a title="Artikel" :route="route('article')" :active="['article', 'article.page', 'author', 'author.page', 'category', 'category.page', 'tag', 'tag.page', 'detail']" :mobile="true" />
+        <div x-data="{ article : false }" class=" relative">
+            <button @click="article = !article" class="{{ request()->routeIs('article', 'article.page', 'author', 'author.page', 'category', 'category.page', 'tag', 'tag.page', 'detail') ? 'text-white bg-second' : 'text-black hover:text-white hover:bg-second'}} w-full py-2 rounded-full font-semibold text-sm duration-300" aria-label="Artikel">Artikel</button>
+            <div x-show="article" class=" max-h-36 overflow-auto py-2 flex flex-col gap-1 text-sm">
+                <a href="{{route('article')}}" class=" w-full  text-nowrap px-4 hover:bg-neutral-100 duration-300 py-1">Artikel Terbaru</a>
+                @foreach ($category as $item)
+                    <a href="{{route('category', ['category' => $item->slug])}}" class=" w-full  text-nowrap px-4 hover:bg-neutral-100 duration-300 py-1">{{$item->category}}</a>
+                @endforeach
+            </div>
+        </div>
         <x-navbar.button.type-a title="Kontak" :route="null" :active="null" :mobile="true" />
         <form action="{{route('article')}}" method="get">
             <div class=" flex items-center justify-between h-10 bg-white">

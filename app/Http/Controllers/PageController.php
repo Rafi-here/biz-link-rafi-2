@@ -27,9 +27,11 @@ class PageController extends Controller
 
             $trend = $api->trend;
 
+            $category = $api->categories;
+
             $url = url('/artikel/page/');
 
-            return view('guest.home', compact('data', 'currentPage', 'lastPage', 'url', 'trend'));
+            return view('guest.home', compact('data', 'currentPage', 'lastPage', 'url', 'trend', 'category'));
         } else {
             return redirect()->route('notfound');
         }
@@ -60,7 +62,9 @@ class PageController extends Controller
 
             $url = url('/artikel/page/');
 
-            return view('guest.article', compact('title', 'data', 'currentPage', 'lastPage', 'url'));
+            $category = $api->categories;
+
+            return view('guest.article', compact('title', 'data', 'currentPage', 'lastPage', 'url', 'category'));
         } else {
             return redirect()->route('notfound');
         }
@@ -84,8 +88,10 @@ class PageController extends Controller
             $title = 'Penulis : '.$api->user;
 
             $url = url('/penulis/'.$username.'/page/');
+            
+            $category = $api->categories;
 
-            return view('guest.article', compact('title', 'data', 'currentPage', 'lastPage', 'url'));
+            return view('guest.article', compact('title', 'data', 'currentPage', 'lastPage', 'url', 'category'));
         } else {
             return redirect()->route('notfound');
         }
@@ -110,7 +116,9 @@ class PageController extends Controller
 
             $url = url('/kategori/'.$category.'/page/');
 
-            return view('guest.article', compact('title', 'data', 'currentPage', 'lastPage', 'url'));
+            $category = $api->categories;
+
+            return view('guest.article', compact('title', 'data', 'currentPage', 'lastPage', 'url', 'category'));
         } else {
             return redirect()->route('notfound');
         }
@@ -135,7 +143,9 @@ class PageController extends Controller
 
             $url = url('/tag/'.$tag.'/page/');
 
-            return view('guest.article', compact('title', 'data', 'currentPage', 'lastPage', 'url'));
+            $category = $api->categories;
+
+            return view('guest.article', compact('title', 'data', 'currentPage', 'lastPage', 'url', 'category'));
         } else {
             return redirect()->route('notfound');
         }
@@ -160,7 +170,9 @@ class PageController extends Controller
 
             $template = $data->template;
 
-            return view('guest.detail', compact('data', 'template'));
+            $category = $api->categories;
+
+            return view('guest.detail', compact('data', 'template', 'category'));
         } else {
             return redirect()->route('notfound');
         }

@@ -1,4 +1,4 @@
-<x-layout.guest title="Page not Found">
+<x-layout.guest title="Page not Found" :category="$category">
     <div class=" flex items-center flex-grow w-full px-4 sm:px-8">
         <div class=" h-full w-full mx-auto max-w-[1080px] py-10 flex items-center justify-center text-center flex-col text-third">
             <p>Error</p>
