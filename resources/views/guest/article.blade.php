@@ -10,13 +10,19 @@
                     </div>
 
                     {{-- Article --}}
-                    <div class=" w-full grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="w-full grid grid-cols-2 md:grid-cols-4 gap-4">
+                        @forelse ($data as $item)
                         @include('components.section.article')
+                        @empty
+                        <div class=" col-span-2 md:col-span-4 w-full flex justify-center text-center">
+                            <p class=" text-neutral-600">Article tidak ditemukan</p>
+                        </div>
+                        @endforelse
                     </div>
 
                     {{-- Pagination --}}
                     @if ($data)
-                        @include('components.section.pagination')
+                    @include('components.section.pagination')
                     @endif
                 </div>
             </div>
