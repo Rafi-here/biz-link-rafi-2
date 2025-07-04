@@ -1,17 +1,18 @@
 <div class="w-full max-w-[1080px] mx-auto">
   <div class="w-full">
-    <div class="swiper mySwiper relative rounded-lg overflow-hidden h-64 sm:h-96">
-
-      <!-- Slides -->
+    <div class="swiper mySwiper w-full max-w-5xl mx-auto rounded-lg overflow-hidden shadow-md">
       <div class="swiper-wrapper">
         @foreach (array_slice($trend, 0, 4) as $item)
-        <div class="swiper-slide relative w-full h-full">
-          <img
-            src="{{ $item->banner ? 'https://bizlink.sites.id/storage/images/article/banner/' . $item->banner : 'https://bizlink.sites.id/assets/images/placeholder.webp' }}"
-            alt="{{ $item->judul }}"
-            class="w-full h-full object-cover" />
+        <div class="swiper-slide relative w-full  h-[240px] sm:h-[300px] md:h-[400px] ">
 
-          <!-- Overlay -->
+          {{-- Banner --}}
+          <a href="{{ route('detail', ['slug' => $item->slug]) }}">
+            <img
+              src="{{ $item->banner ? 'https://bizlink.sites.id/storage/images/article/banner/' . $item->banner : 'https://bizlink.sites.id/assets/images/placeholder.webp' }}"
+              alt="{{ $item->judul }}"
+              class="w-full h-full object-cover" />
+          </a>
+
           <div class="absolute inset-0 bg-black/30 flex flex-col justify-end text-white p-4 sm:p-6 space-y-2">
             <div class="flex flex-wrap gap-2">
               @foreach ($item->articles->articlecategory as $category)
@@ -39,52 +40,44 @@
           </div>
         </div>
         @endforeach
+
       </div>
 
-      <!-- Progressbar Pagination -->
-      <div class="swiper-pagination absolute bottom-0 left-0 w-full h-1 bg-white/20 z-10"></div>
-
-      <!-- Arrows -->
-      <div class="swiper-button-next !text-white hidden sm:flex"></div>
-      <div class="swiper-button-prev !text-white hidden sm:flex"></div>
+      <div class="swiper-pagination mt-4"></div>
     </div>
+
+
   </div>
 
   <style>
     .swiper-pagination-bullet {
       width: 12px;
       height: 12px;
-      opacity: 0.5;
-      background-color: white;
-      transition-duration: 300ms;
+      opacity: 0.4;
+      background-color: #6B7280;
       border-radius: 9999px;
+      transition: all 0.3s;
     }
 
     .swiper-pagination-bullet-active {
       width: 24px;
       opacity: 1;
-      background-color: white;
+      background-color: #06923E;
     }
   </style>
 
+
+
   <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      new Swiper('.mySwiper', {
+    document.addEventListener("DOMContentLoaded", () => {
+      new Swiper(".mySwiper", {
         loop: true,
-        speed: 700,
         pagination: {
-          el: '.swiper-pagination',
-          type: 'progressbar',
-        },
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: false,
+          el: ".swiper-pagination",
+          clickable: true,
         },
       });
     });
   </script>
+
 </div>
